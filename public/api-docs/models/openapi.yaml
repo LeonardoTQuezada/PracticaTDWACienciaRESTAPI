@@ -264,6 +264,119 @@ paths:
           description: Username exists &lt;Response body is empty&gt;
         '404':
           $ref: '#/components/responses/Response_404'
+  
+ 
+  /entity:
+    get:
+        tags:
+          - '🏭 Entity'
+        summary: Retrieves the collection of Entity resources.
+        description: Returns all entities from the system that the user has access to.
+        operationId: readEntities
+        # security:
+        #   - MiWApiSecurity: [ reader ]
+        parameters:
+          - $ref: '#/components/parameters/orderParam'
+          - $ref: '#/components/parameters/orderingParam'
+        responses:
+          '200':
+            description: Array of entities
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    products:
+                      description: Entities array
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Entity'
+            headers:
+              ETag:
+                $ref: '#/components/headers/ETag'
+          '404':
+            $ref: '#/components/responses/Response_404'
+    post:
+      tags:
+        - '🏭 Entity'
+      summary: Creates a Entity resource.
+      description: Creates a new entity
+      operationId: createEntity
+      security:
+        - MiWApiSecurity: [ writer ]
+      requestBody:
+        $ref: '#/components/requestBodies/ElementRequestBody'
+      responses:
+        '201':
+          description: '`Created`: entity created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        '403':
+          $ref: '#/components/responses/Response_403'
+        '422':
+          $ref: '#/components/responses/Response_422'
+  '/entities/{entityId}':
+    parameters:
+      - $ref: '#/components/parameters/entityId'
+    get:
+      tags:
+        - '🏭 Entity'
+      summary: Retrieves a Entity resource based on a single ID.
+      description: Returns the entity identified by `entityId`.
+      operationId: readEntity
+      # security:
+      #   - MiWApiSecurity: [ reader ]
+      responses:
+        '200':
+          description: Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    put:
+      tags:
+        - '🏭 Entity'
+      summary: Updates the Entity resource.
+      description: Updates the entity identified by `entityId`.
+      operationId: updateEntity
+      security:
+        - MiWApiSecurity: [ writer ]
+      requestBody:
+        $ref: '#/components/requestBodies/ElementRequestBody'
+      parameters:
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '209':
+          description: '`Content Returned`: entity previously existed and is now updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '401':
+          $ref: '#/components/responses/Response_401'
+#        '403':
+#          $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+        '412':
+          $ref: '#/components/responses/Response_412'
+
 
   /products:
     get:

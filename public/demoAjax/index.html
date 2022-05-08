@@ -19,6 +19,8 @@
     <code><span id="products">Products: (null)</span></code>
     <hr/>
     <code><span id="users">Users: (null)</span></code>
+    <hr/>
+    <code><span id="entity">Products: (null)</span></code>
 
 <script type="text/javascript">
     let authHeader = null;
@@ -76,6 +78,18 @@
             // dataType: 'json',
             success: function (data) {
                 $('#users').html(JSON.stringify(data));
+            }
+        })
+    }
+
+    function showEntity(authHeader) {
+        $.ajax({
+            type: "GET",
+            url: '/api/v1/entity',
+            headers: {"Authorization": authHeader},
+            // dataType: 'json',
+            success: function (data) {
+                $('#entity').html(JSON.stringify(data));
             }
         })
     }
