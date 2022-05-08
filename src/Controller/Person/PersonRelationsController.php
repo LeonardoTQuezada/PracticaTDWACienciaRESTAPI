@@ -103,7 +103,7 @@ final class PersonRelationsController extends ElementRelationsBaseController
         // @TODO
         $elementData = [
             'getter' => 'getProducts',
-            'stuff' => EntityController::getEntitiesTag(),
+            'stuff' => ProductController::getEntitiesTag(),
         ];
         return $this->getElements($response, $args, $elementData);
     }

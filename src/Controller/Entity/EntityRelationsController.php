@@ -104,7 +104,7 @@ final class EntityRelationsController extends ElementRelationsBaseController
         // @TODO
         $elementData = [
             'getter' => 'getProducts',
-            'stuff' => EntityController::getEntitiesTag(),
+            'stuff' => ProductController::getEntitiesTag(),
         ];
         return $this->getElements($response, $args, $elementData);
     }
@@ -129,7 +129,6 @@ final class EntityRelationsController extends ElementRelationsBaseController
             'stuff' => ProductController::getEntitiesTag(),
         ];
         return $this->operationStuff($request, $response, $args, $elementData);
-
     }
     
    

@@ -266,120 +266,6 @@ paths:
           description: Username exists &lt;Response body is empty&gt;
         '404':
           $ref: '#/components/responses/Response_404'
-  
- 
-  /entity:
-    get:
-        tags:
-          - '🏭 Entity'
-        summary: Retrieves the collection of Entity resources.
-        description: Returns all entities from the system that the user has access to.
-        operationId: readEntities
-        # security:
-        #   - MiWApiSecurity: [ reader ]
-        parameters:
-          - $ref: '#/components/parameters/orderParam'
-          - $ref: '#/components/parameters/orderingParam'
-        responses:
-          '200':
-            description: Array of entities
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    products:
-                      description: Entities array
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Entity'
-            headers:
-              ETag:
-                $ref: '#/components/headers/ETag'
-          '404':
-            $ref: '#/components/responses/Response_404'
-    post:
-      tags:
-        - '🏭 Entity'
-      summary: Creates a Entity resource.
-      description: Creates a new entity
-      operationId: createEntity
-      security:
-        - MiWApiSecurity: [ writer ]
-      requestBody:
-        $ref: '#/components/requestBodies/ElementRequestBody'
-      responses:
-        '201':
-          description: '`Created`: entity created'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Entity'
-          headers:
-            Location:
-              $ref: '#/components/headers/Location'
-        '400':
-          $ref: '#/components/responses/Response_400'
-        '401':
-          $ref: '#/components/responses/Response_401'
-        '403':
-          $ref: '#/components/responses/Response_403'
-        '422':
-          $ref: '#/components/responses/Response_422'
-  '/entities/{entityId}':
-    parameters:
-      - $ref: '#/components/parameters/entityId'
-    get:
-      tags:
-        - '🏭 Entity'
-      summary: Retrieves a Entity resource based on a single ID.
-      description: Returns the entity identified by `entityId`.
-      operationId: readEntity
-      # security:
-      #   - MiWApiSecurity: [ reader ]
-      responses:
-        '200':
-          description: Entity
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Entity'
-          headers:
-            ETag:
-              $ref: '#/components/headers/ETag'
-        '404':
-          $ref: '#/components/responses/Response_404'
-    put:
-      tags:
-        - '🏭 Entity'
-      summary: Updates the Entity resource.
-      description: Updates the entity identified by `entityId`.
-      operationId: updateEntity
-      security:
-        - MiWApiSecurity: [ writer ]
-      requestBody:
-        $ref: '#/components/requestBodies/ElementRequestBody'
-      parameters:
-        - $ref: '#/components/parameters/ifMatchParam'
-      responses:
-        '209':
-          description: '`Content Returned`: entity previously existed and is now updated'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Entity'
-        '400':
-          $ref: '#/components/responses/Response_400'
-        '401':
-          $ref: '#/components/responses/Response_401'
-#        '403':
-#          $ref: '#/components/responses/Response_403'
-        '404':
-          $ref: '#/components/responses/Response_404'
-        '412':
-          $ref: '#/components/responses/Response_412'
-
-
   /products:
     get:
       tags:
@@ -497,8 +383,8 @@ paths:
           $ref: '#/components/responses/Response_400'
         '401':
           $ref: '#/components/responses/Response_401'
-#        '403':
-#          $ref: '#/components/responses/Response_403'
+        #        '403':
+        #          $ref: '#/components/responses/Response_403'
         '404':
           $ref: '#/components/responses/Response_404'
         '412':
@@ -516,8 +402,8 @@ paths:
           description: Product deleted &lt;Response body is empty&gt;
         '401':
           $ref: '#/components/responses/Response_401'
-#        '403':
-#          $ref: '#/components/responses/Response_403'
+        #        '403':
+        #          $ref: '#/components/responses/Response_403'
         '404':
           $ref: '#/components/responses/Response_404'
     options:
@@ -664,6 +550,268 @@ paths:
           $ref: '#/components/responses/Response_404'
         '406':
           $ref: '#/components/responses/Response_406'
+  
+ 
+  /entities:
+    get:
+        tags:
+          - '🏭 Entity'
+        summary: Retrieves the collection of Entity resources.
+        description: Returns all entities from the system that the user has access to.
+        operationId: readEntities
+        # security:
+        #   - MiWApiSecurity: [ reader ]
+        parameters:
+          - $ref: '#/components/parameters/orderParam'
+          - $ref: '#/components/parameters/orderingParam'
+        responses:
+          '200':
+            description: Array of entities
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    products:
+                      description: Entities array
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Entity'
+            headers:
+              ETag:
+                $ref: '#/components/headers/ETag'
+          '404':
+            $ref: '#/components/responses/Response_404'
+    post:
+      tags:
+        - '🏭 Entity'
+      summary: Creates a Entity resource.
+      description: Creates a new entity
+      operationId: createEntity
+      security:
+        - MiWApiSecurity: [ writer ]
+      requestBody:
+        $ref: '#/components/requestBodies/ElementRequestBody'
+      responses:
+        '201':
+          description: '`Created`: entity created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        '403':
+          $ref: '#/components/responses/Response_403'
+        '422':
+          $ref: '#/components/responses/Response_422'
+        
+  '/entities/{entityId}':
+    parameters:
+      - $ref: '#/components/parameters/entityId'
+    get:
+      tags:
+        - '🏭 Entity'
+      summary: Retrieves a Entity resource based on a single ID.
+      description: Returns the entity identified by `entityId`.
+      operationId: readEntity
+      # security:
+      #   - MiWApiSecurity: [ reader ]
+      responses:
+        '200':
+          description: Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    put:
+      tags:
+        - '🏭 Entity'
+      summary: Updates the Entity resource.
+      description: Updates the entity identified by `entityId`.
+      operationId: updateEntity
+      security:
+        - MiWApiSecurity: [ writer ]
+      requestBody:
+        $ref: '#/components/requestBodies/ElementRequestBody'
+      parameters:
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '209':
+          description: '`Content Returned`: entity previously existed and is now updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        # '403':
+        #  $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+        '412':
+          $ref: '#/components/responses/Response_412'
+    delete:
+      tags:
+        - '🏭 Entity'
+      summary: Removes the Entity resource.
+      description: Deletes the entity identified by `entitytId`.
+      operationId: deleteentity
+      security:
+        - MiWApiSecurity: [ writer ]
+      responses:
+        '204':
+          description: Entity deleted &lt;Response body is empty&gt;
+        '401':
+          $ref: '#/components/responses/Response_401'
+        # '403':
+        #   $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+  '/entities/entityname/{entityname}':
+    get:
+      tags:
+        - '🏭 Entity'
+      summary: Determines if entityname exists
+      description: Returns status code 204 if `entitytname` exists.
+      operationId: existsEntity
+      parameters:
+        - $ref: '#/components/parameters/entityName'
+      responses:
+        '204':
+          description: Entityname exists &lt;Response body is empty&gt;
+        '404':
+          $ref: '#/components/responses/Response_404'
+  '/entities/{entityId}/products':
+    get:
+      tags:
+        - '🏭 Entity'
+      summary: List of products related to the entity
+      description: Returns the products related to the entity `entityId`
+      operationId: readEntityProducts
+      # security:
+      #   - MiWApiSecurity: [ reader ]
+      parameters:
+        - $ref: '#/components/parameters/entityId'
+      responses:
+        '200':
+          description: Array of Products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    description: Products array
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Entity'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        # '401':
+        #   $ref: '#/components/responses/Response_401'
+        '404':
+          $ref: '#/components/responses/Response_404'
+  '/entities/{entityId}/persons':
+    get:
+      tags:
+        - '🏭 Entity'
+      summary: List of persons related to the entity
+      description: Returns the persons related to the entity `entityId`
+      operationId: readEntityPersons
+      # security:
+      #   - MiWApiSecurity: [ reader ]
+      parameters:
+        - $ref: '#/components/parameters/entityId'
+      responses:
+        '200':
+          description: Array of Persons
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  persons:
+                    description: Person array
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Person'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        # '401':
+        #   $ref: '#/components/responses/Response_401'
+        '404':
+          $ref: '#/components/responses/Response_404'
+  '/entities/{entityId}/products/{operation}/{productId}':
+    put:
+      tags:
+        - '🏭 Entity'
+      summary: Sets or remove the relationship entity-product
+      description: Establishes/Removes the relationship of the entity with the product
+      operationId: api_entities_add_rem_product
+      security:
+        - MiWApiSecurity: [ writer ]
+      parameters:
+        - $ref: '#/components/parameters/productId'
+        - $ref: '#/components/parameters/operationParam'
+        - $ref: '#/components/parameters/entityId'
+      responses:
+        '209':
+          description: '`Content Returned`: entity is now updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        '403':
+          $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+        '406':
+          $ref: '#/components/responses/Response_406'
+  '/entities/{entityId}/persons/{operation}/{personId}':
+    put:
+      tags:
+          - '🏭 Entity'
+      summary: Sets or remove the relationship entity-person
+      description: Establishes/Removes the relationship of the entity with the person
+      operationId: api_entity_add_rem_person
+      security:
+        - MiWApiSecurity: [ writer ]
+      parameters:
+        - $ref: '#/components/parameters/entityId'
+        - $ref: '#/components/parameters/operationParam'
+        - $ref: '#/components/parameters/personId'
+      responses:
+        '209':
+          description: '`Content Returned`: entity is now updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/entity'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        '403':
+          $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+        '406':
+          $ref: '#/components/responses/Response_406'
 
 components:
   schemas:
@@ -688,46 +836,46 @@ components:
           enum:
             - reader
             - writer
-#        _links:
-#          description: link relations
-#          type: object
-#          properties:
-#            parent:
-#              type: object
-#              properties:
-#                href:
-#                  type: string
-#                  format: url
-#            self:
-#              type: object
-#              properties:
-#                href:
-#                  type: string
-#                  format: url
+        #        _links:
+        #          description: link relations
+        #          type: object
+        #          properties:
+        #            parent:
+        #              type: object
+        #              properties:
+        #                href:
+        #                  type: string
+        #                  format: url
+        #            self:
+        #              type: object
+        #              properties:
+        #                href:
+        #                  type: string
+        #                  format: url
       example:
-        user:
-          id: 1508
-          username: user1508
-          email: miw.etsisi@upm.es
-          role: reader
-#          _links:
-#            parent:
-#              href: /api/v1/users
-#            self:
-#              href: /api/v1/users/1508
+                user:
+                  id: 1508
+                  username: user1508
+                  email: miw.etsisi@upm.es
+                  role: reader
+        #          _links:
+        #            parent:
+        #              href: /api/v1/users
+        #            self:
+        #              href: /api/v1/users/1508
       description: ''
       x-examples:
-        example-1:
-          user:
-            id: 1508
-            username: user1508
-            email: miw.etsisi@upm.es
-            role: reader
-#            _links:
-#              parent:
-#                href: /api/v1/users
-#              self:
-#                href: /api/v1/users/1508
+              example-1:
+                  user:
+                    id: 1508
+                    username: user1508
+                    email: miw.etsisi@upm.es
+                    role: reader
+        #            _links:
+        #              parent:
+        #                href: /api/v1/users
+        #              self:
+        #                href: /api/v1/users/1508
     Element:
       type: object
       required:
