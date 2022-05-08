@@ -102,6 +102,11 @@ final class EntityRelationsController extends ElementRelationsBaseController
     public function getProducts(Request $request, Response $response, array $args): Response
     {
         // @TODO
+        $elementData = [
+            'getter' => 'getProducts',
+            'stuff' => EntityController::getEntitiesTag(),
+        ];
+        return $this->getElements($response, $args, $elementData);
     }
 
     /**

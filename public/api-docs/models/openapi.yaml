@@ -23,6 +23,8 @@ tags:
     description: User management
   - name: '💡 Products'
     description: Product management
+  - name: '🏭 Entity'
+    description: Entity management
 
 paths:
   /access_token:
