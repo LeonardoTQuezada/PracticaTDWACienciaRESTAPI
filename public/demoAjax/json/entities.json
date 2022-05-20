@@ -1,0 +1,37 @@
+{
+  "entities": [
+    {
+      "entity": {
+        "id": 1,
+        "name": "IBM",
+        "birthDate": "1911-06-16",
+        "deathDate": "",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/IBM_Logo_1947_1956.svg",
+        "wikiUrl": "https://es.wikipedia.org/wiki/IBM",
+        "miWeb": ""
+      }
+    },
+    {
+      "entity": {
+        "id": 2,
+        "name": "CERN",
+        "birthDate": "1954-09-29",
+        "deathDate": "",
+        "imageUrl": "https://cdn.iconscout.com/icon/free/png-256/xml-file-2330558-1950399.png",
+        "wikiUrl": "https://es.wikipedia.org/wiki/Organización_Europea_para_la_Investigación_Nuclear",
+        "miWeb": ""
+      }
+    },
+    {
+      "entity": {
+        "id": 3,
+        "name": "W3C",
+        "birthDate": "1994-10-01",
+        "deathDate": "",
+        "imageUrl": "https://cdn.worldvectorlogo.com/logos/w3c-blue.svg",
+        "wikiUrl": "https://es.wikipedia.org/wiki/World_Wide_Web_Consortium",
+        "miWeb": ""
+      }
+    }
+  ]
+}

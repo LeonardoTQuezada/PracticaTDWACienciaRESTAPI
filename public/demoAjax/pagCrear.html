@@ -1,0 +1,92 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Práctica Uno de HTML y CSS</title>
+
+  <link href="css/hoja-de-estilos.css" rel="stylesheet" type="text/css"/>
+  <script src="https://unpkg.com/jquery@1"></script>
+
+  <div class="position">
+
+    <div id="solid">
+
+      <center>
+
+        <h1 style="color:gold;">Anales de la ciencia</h1>
+
+      </center>
+
+    </div>
+
+  </div>
+
+</head>
+
+<body bgcolor="black">
+
+<main>
+  <div id="positionForm">
+    <form id="formletter" method="POST">
+
+      <pre>Name <input id='txtNombre' type="text"  required maxlength="40" name="name" required placeholder="string" autofocus> </pre>
+
+      <pre>birthDate  <input id='fechaI' type ="date" name="birthDate" value="2022-05-19"></pre>
+
+      <pre>deathDate <input id='fechaF' type="date" name="deathDate" value="2022-05-19"></pre>
+
+      <pre>imageUrl <input id='urlImg' type="text" name="imageUrl" placeholder="string"></pre>
+
+      <pre>wikiUrl   <input id='urlWiki' type = "text" name="wikiUrl" placeholder="string"></pre>
+
+      </br>
+      <input id="btnGuardar" type="button"  value="Guardar"  class="button1">
+    </form>
+
+  </div>
+</main>
+
+<script type="text/javascript">
+  let authHeader = sessionStorage.getItem('Authorization');
+  let tipo =sessionStorage.getItem('tipoE');
+
+  $("#btnGuardar").click(function(){
+    switch (tipo) {
+      case 'Product':
+            break;
+      case 'Entity':
+        break;
+      case 'Product':
+        break;
+
+    }
+    $.ajax({
+      type: "POST",
+      url: '/api/v1/products',
+      headers: {"Authorization": authHeader},
+      dataType: 'json',
+      data: $("#formletter").serialize(),
+      success: function (data) {
+        $(window).attr('location','PagWriter.html')
+      }
+    })
+
+  });
+  function showTokenRol(authHeader) {
+    let token = authHeader.split(' ')[1];   // Elimina 'Bearer '
+    let myData = JSON.parse(atob(token.split('.')[1]));
+    return  myData.scopes;
+  }
+
+
+
+</script>
+
+</body>
+
+</html>

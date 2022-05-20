@@ -1,0 +1,75 @@
+body{
+	background: black;
+	text-decoration-color: gold;
+}
+#titulo {
+
+	border-style: solid;
+	color: gold;
+	margin-left: 100px;
+	margin-right: 100px;
+	text-align: center;
+
+}
+
+#contRetorno {
+
+	margin-top: 30px;
+	margin-left: 100px;
+}
+
+#ventana{
+	width: 500px;
+	height: 450px;
+}
+
+#imagenHtml5{
+	width: 250px;
+	height: 250px;
+}
+
+#imagenTim{
+	width: 250px;
+	height: 200px;
+}
+#contenedor1{
+	margin-right: 20px;
+}
+#contenedor2{
+	margin-left: 20px;
+}
+
+#main {
+	text-decoration-color: gold;
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+
+}
+#retorno{
+	color: white;
+	font-size: 20px;
+}
+h2,h3,h4 {
+
+	color: gold;
+	text-align: center;
+}
+img{
+	width: 50px;
+	height: 50px;
+}
+
+#alinear-izq{
+	float: left;
+}
+.alinear-derch{
+	float: right;
+	margin-left: 20px;
+}
+#footer {
+	margin-left: 100px;
+	margin-right: 100px;
+ 	margin-top: 50px;
+
+}

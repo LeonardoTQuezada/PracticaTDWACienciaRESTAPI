@@ -1,0 +1,26 @@
+{
+  "persons": [
+    {
+      "person": {
+        "id": 1,
+        "name": "Tim Berners-Lee",
+        "birthDate": "1955-06-08",
+        "deathDate": "",
+        "imageUrl": "https://www.bbvaopenmind.com/wp-content/uploads/2015/06/BBVA-OpenMind-tim-berners-lee-1-1.jpg",
+        "wikiUrl": "https://es.wikipedia.org/wiki/Tim_Berners-Lee",
+        "miWeb": "./paginaTim.html"
+      }
+    },
+    {
+      "person": {
+        "id": 2,
+        "name": "Vannevar-Bush",
+        "birthDate": "1890-03-11",
+        "deathDate": "",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Vannevar_Bush_portrait.jpg/440px-Vannevar_Bush_portrait.jpg",
+        "wikiUrl": "https://es.wikipedia.org/wiki/Vannevar_Bush",
+        "miWeb": ""
+      }
+    }
+  ]
+}

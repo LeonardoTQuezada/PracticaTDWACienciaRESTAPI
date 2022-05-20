@@ -1,29 +1,42 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>[TDW] ACiencia - Demo AJAX </title>
     <script src="https://unpkg.com/jquery@1"></script>
+    <link href="css/hoja-de-estilos.css" rel="stylesheet" type="text/css"/>
+    <div class="position">
+
+        <div id="solid">
+
+            <center>
+
+                <h1 style="color:gold;">Anales de la ciencia</h1>
+
+            </center>
+
+        </div>
+
+    </div>
 </head>
-<body>
-    <form id="form-login" method="post">
-        <label for="username">Usuario: </label>
-        <input type="text" id="username" name="username" placeholder="Usuario" autofocus/>
-        <label for="password">Contraseña: </label>
-        <input type="password" id="password" name="password" placeholder="Palabra clave"/>
-        <input type="button" id="btn-login" value="Login" />
-    </form>
+
+<body >
+    <div id="positionForm">
+        <form id="form-login" method="post">
+            <label for="username">Usuario: </label>
+            <input type="text" id="username" name="username" placeholder="Usuario" autofocus/>
+            <label for="password">Contraseña: </label>
+            <input type="password" id="password" name="password" placeholder="Palabra clave"/>
+            <input type="button" id="btn-login" value="Login" />
+            <input type="button" id="btn-signin" value="Sign in" />
+        </form>
+    </div>
     <hr/>
-    <code><span id="mytoken">Scopes: (null)</span></code>
-    <hr/>
-    <code><span id="products">Products: (null)</span></code>
-    <hr/>
-    <code><span id="users">Users: (null)</span></code>
-    <hr/>
-    <code><span id="entity">Products: (null)</span></code>
 
 <script type="text/javascript">
     let authHeader = null;
+
     $("#btn-login").click(function(){
         $.post(
             "/access_token",
@@ -31,68 +44,35 @@
             null
             ).success(function (data, textStatus, request) {
                 // => show scopes, users, products, ...
+
                 authHeader = request.getResponseHeader('Authorization');
-                showData(authHeader);
-                console.log(data)
-            }).fail(function (xhr) {
+                sessionStorage.setItem('Authorization',authHeader);
+                let roles =showTokenRol(authHeader)
+                if(roles[1]=='writer'){
+                    $(window).attr('location','PagWriter.html')
+                }
+                else{
+                    $(window).attr('location','pagReader.html')
+                }
+
+
+
+             }).fail(function (xhr) {
+                let message="";
                 if (xhr.responseJSON && xhr.responseJSON.message) {
-                message = xhr.responseJSON.message;
+                    message = xhr.responseJSON.message;
                 }
                 alert("Incorrecto :( \n" + message)
             });
     });
-
-    function showData(authHeader) {
-        showToken(authHeader);
-        showProducts(authHeader);
-        showUsers(authHeader);
-    }
-
-    function showToken(authHeader) {
+    function showTokenRol(authHeader) {
         let token = authHeader.split(' ')[1];   // Elimina 'Bearer '
         let myData = JSON.parse(atob(token.split('.')[1]));
-        console.log("JWT: " + token);
-        $('#mytoken').html(
-            "User: " + JSON.stringify(myData.sub) +
-            " - JWT Scopes: " + JSON.stringify(myData.scopes)
-        );
+        return  myData.scopes;
     }
 
-    function showProducts(authHeader) {
-        $.ajax({
-            type: "GET",
-            url: '/api/v1/products',
-            headers: {"Authorization": authHeader},
-            // dataType: 'json',
-            success: function (data) {
-                $('#products').html(JSON.stringify(data));
-            }
-        })
-    }
 
-    function showUsers(authHeader) {
-        $.ajax({
-            type: "GET",
-            url: '/api/v1/users',
-            headers: {"Authorization": authHeader},
-            // dataType: 'json',
-            success: function (data) {
-                $('#users').html(JSON.stringify(data));
-            }
-        })
-    }
 
-    function showEntity(authHeader) {
-        $.ajax({
-            type: "GET",
-            url: '/api/v1/entity',
-            headers: {"Authorization": authHeader},
-            // dataType: 'json',
-            success: function (data) {
-                $('#entity').html(JSON.stringify(data));
-            }
-        })
-    }
 </script>
 </body>
 </html>

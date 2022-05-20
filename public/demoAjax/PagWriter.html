@@ -1,0 +1,112 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Práctica Uno de HTML y CSS</title>
+    <meta name="description" content="A simple HTML5 Template for new projects.">
+    <meta name="author" content="SitePoint">
+
+    <meta property="og:title" content="HTML5">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.sitepoint.com/a-basic-html5-template/">
+    <meta property="og:description" content="A simple HTML5 Template for new projects.">
+    <meta property="og:image" content="image.png">
+
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link href="css/hoja-de-estilos.css" rel="stylesheet" type="text/css"/>
+    <script src="https://unpkg.com/jquery@1"></script>
+
+
+    <div class="position">
+
+        <div id="solid">
+
+            <center>
+
+                <h1 style="color:gold;">Anales de la ciencia</h1>
+
+            </center>
+
+        </div>
+
+    </div>
+
+</head>
+
+<body bgcolor="black">
+
+<div id="positionForm">
+
+
+    <button onclick="window.location.href='index.html'">Logout</button>
+
+
+
+</div>
+
+
+<main>
+
+    <div class="positionLeft">
+
+        <table class="tableletter">
+
+            <tbody id="tableProduct">
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th><button id='btnCrearProd' >Crear Producto</button></th>
+            </tr>
+            </tfoot>
+
+        </table>
+
+    </div>
+
+    <div class="positionCenter">
+
+        <table class="tableletter">
+
+            <tbody id="tablePersons">
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th><button class='btnCrearP' onclick="">Crear Persona</button></th>
+
+            </tr>
+            </tfoot>
+        </table>
+
+    </div>
+
+    <div class="positionRight">
+
+        <table class="tableletter">
+
+            <tbody id="tableEntity">
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th><button class='btnCrearE' onclick="">Crear Entidad</button></th>
+            </tr>
+            </tfoot>
+        </table>
+
+    </div>
+
+</main>
+<script src="js/cargaLista.js"></script>
+<!--<script src="js/cargarPaginaWriter.js"></script> -->
+
+</body>
+</html>

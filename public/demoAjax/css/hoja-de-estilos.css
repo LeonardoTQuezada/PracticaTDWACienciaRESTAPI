@@ -1,0 +1,109 @@
+/* Borde del titulo de arriba */
+
+#solid {
+
+	border-style: solid;
+	color: gold;
+}
+
+body{
+	background-color: black;
+}
+/* Posición del form */
+
+#positionForm {
+
+	margin-top: 20px;
+}
+
+/* Color letra del formulario */
+
+#form-login,#formletter {
+
+	color: gold;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+/* Color letra de la tabla */
+
+table.tableletter {
+
+	color: gold;
+	font-size: 16px;
+	font-weight: bold;
+
+}
+
+/* Posición de la tabla de la izquierda */
+
+div.positionLeft { 
+
+	float: left;
+
+	margin-top: 2%;
+
+	margin-left: 35%;	
+
+
+}
+
+/* Posición de la tabla del centro */
+
+
+div.positionCenter {
+
+	float: left;
+
+	margin-top: 2%;
+
+	margin-left: 3%;
+
+
+}
+
+/* Posición de la tabla de la derecha */
+
+div.positionRight {
+
+	float: left;
+
+	margin-top: 2%;
+
+	margin-left: 3%;
+}
+
+/* Dimensiones de las imagenes */
+
+img.dimensionImg {
+
+	max-height: 45px;
+
+	max-width: 45px;
+}
+
+a.button1 {
+	display:inline-block;
+	padding:0.35em 1.2em;
+	border:0.1em solid #FFFFFF;
+	margin:0 0.3em 0.3em 0;
+	border-radius:0.12em;
+	box-sizing: border-box;
+	text-decoration:none;
+	font-family:'Roboto',sans-serif;
+	font-weight:300;
+	color:#FFFFFF;
+	text-align:center;
+	transition: all 0.2s;
+}
+a.button1:hover {
+	color:#000000;
+	background-color:#FFFFFF;
+}
+
+@media all and (max-width:30em) {
+a.button1 {
+	display:block;
+	margin:0.4em auto;
+ }
+} 

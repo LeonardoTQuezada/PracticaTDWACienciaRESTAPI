@@ -76,6 +76,7 @@ paths:
         '404':
           $ref: '#/components/responses/Response_404'
 
+
   /users:
     get:
       tags:
@@ -84,7 +85,7 @@ paths:
       description: Returns all users from the system that the user has access to.
       operationId: api_users_cget
       security:
-        - MiWApiSecurity: [ reader ]
+         - MiWApiSecurity: [ reader ]
       responses:
         '200':
           description: Array of users
@@ -111,8 +112,8 @@ paths:
       summary: Creates a User resource.
       description: Creates a new user
       operationId: api_users_post
-      security:
-        - MiWApiSecurity: [ writer ]
+      #security:
+        #- MiWApiSecurity: [ writer ]
       requestBody:
         $ref: '#/components/requestBodies/UserRequestBody'
       responses:
@@ -222,7 +223,7 @@ paths:
             $ref: '#/components/responses/Response_404'
         '412':
             $ref: '#/components/responses/Response_412'
-            delete:
+    delete:
               tags:
                 - '👥 Users'
               summary: Removes the User resource.
@@ -272,8 +273,8 @@ paths:
       summary: Retrieves the collection of Product resources.
       description: Returns all products from the system that the user has access to.
       operationId: readProducts
-      # security:
-      #   - MiWApiSecurity: [ reader ]
+      security:
+         - MiWApiSecurity: [ reader ]
       parameters:
         - $ref: '#/components/parameters/orderParam'
         - $ref: '#/components/parameters/orderingParam'

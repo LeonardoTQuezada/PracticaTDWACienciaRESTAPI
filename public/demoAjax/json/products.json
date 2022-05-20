@@ -1,0 +1,70 @@
+{
+  "products": [
+    {
+      "product": {
+        "id": 1,
+        "name": "SGML",
+        "birthDate": "1988-02-01",
+        "deathDate": "",
+        "imageUrl": "https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photo/7154938/image/2be9b3616f7d3575210387d3299e4dae",
+        "wikiUrl": "https://es.wikipedia.org/wiki/SGML",
+        "miWeb": ""
+      }
+    },
+    {
+      "product": {
+        "id": 2,
+        "name": "XML",
+        "birthDate": "1954-09-29",
+        "deathDate": "",
+        "imageUrl": "https://cdn.iconscout.com/icon/free/png-256/xml-file-2330558-1950399.png",
+        "wikiUrl": "https://es.wikipedia.org/wiki/Extensible_Markup_Language",
+        "miWeb": ""
+      }
+    },
+    {
+      "product": {
+        "id": 3,
+        "name": "HTTP",
+        "birthDate": "1994-10-01",
+        "deathDate": "",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/HTTP_logo_-_2014.svg/290px-HTTP_logo_-_2014.svg.png",
+        "wikiUrl": "https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_hipertexto",
+        "miWeb": ""
+      }
+    },
+    {
+      "product": {
+        "id": 4,
+        "name": "HTML",
+        "birthDate": "1911-06-16",
+        "deathDate": "",
+        "imageUrl": "https://seeklogo.com/images/H/html5-without-wordmark-color-logo-14D252D878-seeklogo.com.png",
+        "wikiUrl": "https://es.wikipedia.org/wiki/HTML",
+        "miWeb": "./paginaHTML.html"
+      }
+    },
+    {
+      "product": {
+        "id": 5,
+        "name": "CSS",
+        "birthDate": "1954-09-29",
+        "deathDate": "",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1452px-CSS3_logo_and_wordmark.svg.png",
+        "wikiUrl": "https://es.wikipedia.org/wiki/CSS",
+        "miWeb": ""
+      }
+    },
+    {
+      "product": {
+        "id": 6,
+        "name": "JavaScript",
+        "birthDate": "1994-10-01",
+        "deathDate": "",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png",
+        "wikiUrl": "https://es.wikipedia.org/wiki/JavaScript",
+        "miWeb": ""
+      }
+    }
+  ]
+}
