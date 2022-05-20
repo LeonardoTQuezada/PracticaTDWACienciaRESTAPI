@@ -27,7 +27,7 @@ function showProducts(authHeader) {
                                <td><img src=${item.product.imageUrl} class="dimensionImg"> ${item.product.name}</td>
                                 <td><button id="btnDelete" onclick="eliminarElemento('${item.product.id}','Product')">Delete</button></td>
                               
-                                <td><button id="btnEdit" onClick="">Edit</button></td>       
+                                <td><button id="btnEdit" onclick="editarElemento('${item.product.id}','Product')">Edit</button></td>       
                         </tr>       `
                 }else{
                     contenedor.innerHTML+= `  
@@ -59,7 +59,7 @@ function showEntity(authHeader) {
                         <td><img src=${item.entity.imageUrl} class="dimensionImg"> ${item.entity.name}</td>
                         <td><button id="btnDelete" onclick="eliminarElemento('${item.entity.id}','Entity')">Delete</button></td>
                         
-                        <td><button id="btnEdit" onClick="">Edit</button></td>       
+                        <td><button id="btnEdit" onclick="editarElemento('${item.entity.id}','Entity')">Edit</button></td>       
                     </tr>
                     `
                 }else{
@@ -89,7 +89,7 @@ function showPerson(authHeader) {
                     <tr id='${item.person.name}'>
                         <td><img src=${item.person.imageUrl} class="dimensionImg"> ${item.person.name}</td>
                         <td><button id="btnDelete" onclick="eliminarElemento('${item.person.id}','Person')">Delete</button></td>
-                        <td><button id="btnEdit" onClick="">Edit</button></td>
+                        <td><button id="btnEdit" onclick="editarElemento('${item.person.id}','Person')">Edit</button></td>
                     </tr>
                     `
                 }

@@ -18,7 +18,7 @@ body{
 
 /* Color letra del formulario */
 
-#form-login,#formletter {
+#form-login,#formletter,#formUpdate {
 
 	color: gold;
 	font-size: 18px;

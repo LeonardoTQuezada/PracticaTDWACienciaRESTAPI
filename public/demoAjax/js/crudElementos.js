@@ -51,30 +51,13 @@ function eliminarElemento(id,tipo) {
    }
 
 }
-function updateElemento(id,tipo) {
-    let ruta=dimeRutaApi(tipo)+'/'+id;
-    let confirma= confirm("Estas seguro de Modificar");
-    if(confirma){
-        $.ajax({
-            type: "put",
-            url: ruta,
-            headers: {"Authorization": authHeader},
-            dataType: 'json',
-            data: $("#formUdate").serialize(),
-            success: function () {
-                $(window).attr('location', 'PagWriter.html')
-            },
-            error: function (xhr) {
-                let message = "";
-                if (xhr.responseJSON && xhr.responseJSON.message) {
-                    message = xhr.responseJSON.message;
-                }
-                alert("Error:( \n" + message)
-            }
-        })
-    }
-
+function editarElemento(id,tipo) {
+    sessionStorage.setItem('tipoE', tipo);
+    sessionStorage.setItem('idElemento',id);
+    $(window).attr('location', 'pagUpdate.html')
 }
+
+
 function dimeRutaApi(tip){
     let rutaApi='';
     switch (tip) {
