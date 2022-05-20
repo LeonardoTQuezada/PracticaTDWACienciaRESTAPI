@@ -34,5 +34,23 @@
         </form>
     </div>
     <hr/>
+
+    <script type="text/javascript">
+
+        $("#btn-newuser").click(function(){
+
+          $.ajax({
+            type: "POST",
+            url: '/api/v1/users',
+            dataType: 'json',
+            data: $("#form-newuser").serialize(),
+            success: function (data) {
+              $(window).attr('location','index.html')
+            }
+          })
+      
+        });
+
+    </script>
 </body>
 </html>
