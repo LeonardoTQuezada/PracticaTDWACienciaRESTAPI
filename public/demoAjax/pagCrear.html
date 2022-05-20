@@ -34,7 +34,7 @@
   <div id="positionForm">
     <form id="formletter" method="POST">
 
-      <pre>Name <input id='txtNombre' type="text"  required maxlength="40" name="name" required placeholder="string" autofocus> </pre>
+      <pre>Name <input id='txtNombre' type="text"  maxlength="40" value='' name="name" placeholder="string"  maxlength="40" required > </pre>
 
       <pre>birthDate  <input id='fechaI' type ="date" name="birthDate" value="2022-05-19"></pre>
 
@@ -50,42 +50,8 @@
 
   </div>
 </main>
+<script src="js/crudElementos.js"></script>
 
-<script type="text/javascript">
-  let authHeader = sessionStorage.getItem('Authorization');
-  let tipo =sessionStorage.getItem('tipoE');
-
-  $("#btnGuardar").click(function(){
-    switch (tipo) {
-      case 'Product':
-            break;
-      case 'Entity':
-        break;
-      case 'Product':
-        break;
-
-    }
-    $.ajax({
-      type: "POST",
-      url: '/api/v1/products',
-      headers: {"Authorization": authHeader},
-      dataType: 'json',
-      data: $("#formletter").serialize(),
-      success: function (data) {
-        $(window).attr('location','PagWriter.html')
-      }
-    })
-
-  });
-  function showTokenRol(authHeader) {
-    let token = authHeader.split(' ')[1];   // Elimina 'Bearer '
-    let myData = JSON.parse(atob(token.split('.')[1]));
-    return  myData.scopes;
-  }
-
-
-
-</script>
 
 </body>
 
