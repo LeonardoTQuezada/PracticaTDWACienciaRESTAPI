@@ -122,3 +122,8 @@ $("#btnCrearP").click(function(){
     sessionStorage.setItem('tipoE','Person');
     $(window).attr('location','pagCrear.html')
 })
+
+$("#btnLogout").click(function(){
+    sessionStorage.clear();
+    $(window).attr('location','index.html');
+})

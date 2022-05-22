@@ -22,33 +22,51 @@
 </head>
 
 <body >
-    <div id="positionForm">
-        <form id="form-newuser" method="POST">
-            <label for="username" style="color: white;">Email: </label>
-            <input type="email" id="useremail" name="useremail" placeholder="Correo" autofocus/>
-            <label for="username" style="color: white;">Usuario: </label>
-            <input type="text" id="username" name="username" placeholder="Usuario" autofocus/>
-            <label for="password" style="color: white;">Contraseña: </label>
-            <input type="password" id="password" name="password" placeholder="Contraseña"/>
-            <input type="button" id="btn-newuser" value="Crear cuenta"/>
-        </form>
+
+    <div id="positionForm1">
+        <hr/>
+        <button onclick="window.location.href='manejarUsuarios.html'">Volver</button>
+        <hr/>
     </div>
-    <hr/>
+    <main>
+        <div id="positionForm">
+            <form id="form-newuser" method="POST">
+                <label for="username" style="color: white;">Email: </label>
+                <input type="email" id="useremail" name="email" placeholder="Correo" autofocus/>
+                <label for="username" style="color: white;">Usuario: </label>
+                <input type="text" id="username" name="username" placeholder="Usuario" autofocus required/>
+                <label for="password" style="color: white;">Contraseña: </label>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required/>
+                <input type="button" id="btn-newuser" value="Crear cuenta"/>
+            </form>
+        </div>
+        <hr/>
+    </main>
+
+
+    <script src="js/btnVolver.js"></script>
 
     <script type="text/javascript">
 
         $("#btn-newuser").click(function(){
-
-          $.ajax({
-            type: "POST",
-            url: '/api/v1/users',
-            dataType: 'json',
-            data: $("#form-newuser").serialize(),
-            success: function (data) {
-              $(window).attr('location','index.html')
-            }
-          })
-      
+            authHeader= sessionStorage.getItem('Authorization')
+            $.ajax({
+                type: "POST",
+                url: '/api/v1/users',
+                headers: {"Authorization": authHeader},
+                dataType: 'json',
+                data: $("#form-newuser").serialize(),
+                success: function (data) {
+                  alert("Usuario creado correctamente");
+                  $(window).attr('location','manejarUsuarios.html')},
+                error: function (xhr) {
+                    let message = "";
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        message = xhr.responseJSON.message;
+                    }
+                    alert("Error:( \n" + message)
+                }
+            })
         });
 
     </script>

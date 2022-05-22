@@ -40,4 +40,46 @@
 
 </head>
 
-<body bgcolor="black"></body>
+<body bgcolor="black">
+
+<div id="positionForm">
+    <hr/>
+    <button onclick="window.location.href='PagWriter.html'">Volver</button>
+    <button onclick="window.location.href='newUser.html'">Crear usuarios</button>
+    <hr/>
+</div>
+
+
+<main>
+
+    <div class="datagrid">
+
+        <table class="tableletter">
+            <thead>
+                <tr>
+
+                    <th>Usuario</th>
+
+                    <th>Email</th>
+
+                    <th>Rol</th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </thead>
+
+            <tbody id="tableUsers">
+
+
+            </tbody>
+        </table>
+
+    </div>
+
+</main>
+<script src="js/crudUsuarios.js"></script>
+<script src="js/btnVolver.js"></script>
+
+</body>
+</html>
