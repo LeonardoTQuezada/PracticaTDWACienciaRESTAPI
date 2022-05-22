@@ -25,13 +25,13 @@ $(document).ready(function (){
             <label for="rol" style="color: white;">Rol: </label>
             `;
             if(usuario.role.toString()=='writer'){
-                contenedor.innerHTML += ` <select name="role" >
-                                            <option selected>Writer</option>
-                                            <option>Reader</option> </select>`;
+                contenedor.innerHTML += ` <select id="role" name="role" >
+                                            <option  selected>Writer</option>
+                                            <option >Reader</option> </select>`;
             }
             else{
-                contenedor.innerHTML += `  <select name="role" >
-                                            <option >Writer</option>
+                contenedor.innerHTML += `  <select id="role" name="role" >
+                                            <option  >Writer</option>
                                             <option selected>Reader</option></select> `;
             }
 
@@ -68,8 +68,8 @@ function updateUser(){
             url: '/api/v1/users/'+id,
             headers: {"Authorization": authHeader,"If-Match": etag},
             dataType: 'json',
-            data:  $("#form-newuser").serialize() ,
-            success: function () {
+            data:  $("#form-upUser").serialize() ,
+            success: function (data) {
                 $(window).attr('location', 'manejarUsuarios.html')
             },
             error: function (xhr) {

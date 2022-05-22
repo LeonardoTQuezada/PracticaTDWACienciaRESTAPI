@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[TDW] ACiencia - Demo AJAX </title>
+    <script src="https://unpkg.com/jquery@1"></script>
+    <link href="css/hoja-de-estilos.css" rel="stylesheet" type="text/css"/>
+    <div class="position">
+
+        <div id="solid">
+
+            <center>
+
+                <h1 style="color:gold;">Anales de la ciencia</h1>
+
+            </center>
+
+        </div>
+
+    </div>
+</head>
+
+<body >
+<div id="positionForm1">
+    <hr/>
+    <button id="btnVolver">Volver</button>
+    <hr/>
+</div>
+<main>
+    <div id="positionForm">
+        <form id="form-newuser" method="POST">
+            <label for="email" style="color: white;">Email: </label>
+            <input type="email" id="email" name="email" placeholder="Correo" autofocus/>
+            <label for="username" style="color: white;">Usuario: </label>
+            <input type="text" id="username" name="username" placeholder="Usuario" autofocus required/>
+            <label for="password" style="color: white;">Contraseña: </label>
+            <input type="password" id="password" name="password" placeholder="Contraseña" />
+            <input type="button" id="btn-newReg" value="Crear cuenta"/>
+        </form>
+        <hr/>
+    </div>
+</main>
+
+
+
+<script type="text/javascript">
+
+    $("#btn-newReg").click(function(e){
+        e.preventDefault();
+        var nombre = $("#username").val();
+        var email = $("#email").val();
+        var pwd = $("#password").val();
+        if(email==""){
+            email=nombre+'@example.com';
+        }
+        if(nombre !==""  && pwd !==""){
+            $.ajax({
+                "url": "regUser.php",
+                type: "POST",
+                cache: false,
+                data : {name:nombre,email:email,password:pwd},
+                success:function(data){
+
+                    alert("Cuenta creada con el nombre "+data);
+                    window.history.back();
+
+                },
+            });
+        }else{
+            alert("Nombre o password no introducidos");
+        }
+    });
+
+
+    $("#btnVolver").click(function(){
+        sessionStorage.clear();
+        window.history.back ();
+    })
+
+</script>
+</body>
+</html>

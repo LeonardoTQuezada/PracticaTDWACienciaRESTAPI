@@ -127,3 +127,6 @@ $("#btnLogout").click(function(){
     sessionStorage.clear();
     $(window).attr('location','index.html');
 })
+$("#btnVerPerfil").click(function(){
+    $(window).attr('location','pagPerfil.html')
+})

@@ -203,6 +203,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ifMatchParam'
       security:
+        - MiWApiSecurity: [ reader ]
         - MiWApiSecurity: [ writer ]
       requestBody:
         $ref: '#/components/requestBodies/UserRequestBody'
