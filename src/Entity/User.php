@@ -250,6 +250,7 @@ class User implements JsonSerializable
                 'id' => $this->getId(),
                 'username' => $this->getUsername(),
                 'email' => $this->getEmail(),
+                'pwd' => $this->getPassword(),
                 'role' => $this->role->__toString(),
             ]
         ];

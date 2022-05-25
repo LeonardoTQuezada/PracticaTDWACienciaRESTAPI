@@ -85,7 +85,7 @@ paths:
       description: Returns all users from the system that the user has access to.
       operationId: api_users_cget
       security:
-         - MiWApiSecurity: [ reader ]
+        - MiWApiSecurity: [ reader ]
       responses:
         '200':
           description: Array of users
@@ -112,8 +112,8 @@ paths:
       summary: Creates a User resource.
       description: Creates a new user
       operationId: api_users_post
-      #security:
-        #- MiWApiSecurity: [ writer ]
+      security:
+        - MiWApiSecurity: [ writer ]
       requestBody:
         $ref: '#/components/requestBodies/UserRequestBody'
       responses:

@@ -4,6 +4,11 @@
 
 $(document).ready(function (){
     authHeader= sessionStorage.getItem('Authorization')
+    let usuarioName= document.querySelector('#nameUser');
+    usuarioName.innerHTML=`
+            ${showToken(authHeader).sub}
+    `
+
     showProducts(authHeader);
     showEntity(authHeader);
     showPerson(authHeader);
@@ -16,7 +21,7 @@ function showProducts(authHeader) {
         headers: {"Authorization": authHeader},
         // dataType: 'json',
         success: function (data) {
-            let roles =showToken(authHeader)
+            let roles =showToken(authHeader).scopes
             let contenedor= document.querySelector('#tableProduct');
             contenedor.innerHTML = '';
             $.each(data.products, function(i, item) {
@@ -49,7 +54,7 @@ function showEntity(authHeader) {
         headers: {"Authorization": authHeader},
         // dataType: 'json',
         success: function (data) {
-            let roles =showToken(authHeader)
+            let roles =showToken(authHeader).scopes
             let contenedor= document.querySelector('#tableEntity');
             contenedor.innerHTML = '';
             $.each(data.entities, function(i, item) {
@@ -80,7 +85,7 @@ function showPerson(authHeader) {
         headers: {"Authorization": authHeader},
         // dataType: 'json',
         success: function (data) {
-            let roles =showToken(authHeader)
+            let roles =showToken(authHeader).scopes
             let contenedor= document.querySelector('#tablePersons');
             contenedor.innerHTML = '';
             $.each(data.persons, function(i, item) {
@@ -108,7 +113,7 @@ function showPerson(authHeader) {
 function showToken(authHeader) {
     let token = authHeader.split(' ')[1];   // Elimina 'Bearer '
     let myData = JSON.parse(atob(token.split('.')[1]));
-    return  myData.scopes;
+    return myData;
 }
 $("#btnCrearProd").click(function(){
     sessionStorage.setItem('tipoE','Product');

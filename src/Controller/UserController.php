@@ -235,7 +235,7 @@ class UserController
      */
     public function put(Request $request, Response $response, array $args): Response
     {
-        if (!$this->checkWriterScope($request)) { // 403 => 404 por seguridad
+        if ( !$this->checkReaderScope($request)) { // 403 => 404 por seguridad
             return Error::error($response, StatusCode::STATUS_NOT_FOUND);
         }
 
@@ -315,5 +315,16 @@ class UserController
     {
         $scopes = $request->getAttribute('token')->claims()->get('scopes', null);
         return in_array(Role::ROLE_WRITER, $scopes, true);
+    }
+
+    /**
+     * @param Request $request
+     * @return bool
+     */
+    protected function checkReaderScope(Request $request): bool
+    {
+
+        $scopes = $request->getAttribute('token')->claims()->get('scopes', null);
+        return in_array(Role::ROLE_READER, $scopes, true);
     }
 }
