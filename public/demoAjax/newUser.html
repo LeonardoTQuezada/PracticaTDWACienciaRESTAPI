@@ -46,24 +46,37 @@
     <script type="text/javascript">
 
         $("#btn-newuser").click(function(){
-            authHeader= sessionStorage.getItem('Authorization')
-            $.ajax({
-                type: "POST",
-                url: '/api/v1/users',
-                headers: {"Authorization": authHeader},
-                dataType: 'json',
-                data: $("#form-newuser").serialize(),
-                success: function (data) {
-                  alert("Usuario creado correctamente");
-                  $(window).attr('location','manejarUsuarios.html')},
-                error: function (xhr) {
-                    let message = "";
-                    if (xhr.responseJSON && xhr.responseJSON.message) {
-                        message = xhr.responseJSON.message;
+            var nombre = $("#username").val();
+            var mail = $("#useremail").val();
+            var pwd = $("#password").val();
+            if(mail==""){
+                mail=nombre+'@example.com';
+            }
+            console.log(mail)
+            if(nombre !==""  && pwd !==""){
+                authHeader= sessionStorage.getItem('Authorization')
+                console.log($("#form-newuser").serialize())
+                $.ajax({
+                    type: "POST",
+                    url: '/api/v1/users',
+                    headers: {"Authorization": authHeader},
+                    dataType: 'json',
+                    data:{username:nombre,email:mail,password:pwd},
+                    success: function (data) {
+                        alert("Usuario creado correctamente");
+                        $(window).attr('location','manejarUsuarios.html')},
+                    error: function (xhr) {
+                        let message = "";
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            message = xhr.responseJSON.message;
+                        }
+                        alert("Error:( \n" + message)
                     }
-                    alert("Error:( \n" + message)
-                }
-            })
+                })
+            }else{
+                alert("Nombre o password no introducidos");
+            }
+
         });
 
     </script>

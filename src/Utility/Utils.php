@@ -89,6 +89,7 @@ class Utils
      * @param string $email user email
      * @param string $password user password
      * @param bool $isWriter isAdmin
+     * @param bool $estado isAdmin
      *
      * @return int user_id
      */
@@ -96,13 +97,16 @@ class Utils
         string $username,
         string $email,
         string $password,
-        bool $isWriter = false
+        bool $isWriter = false,
+        bool $estado = true
     ): int {
         $user = new User(
+            $estado,
             $username,
             $email,
             $password,
-            ($isWriter) ? Role::ROLE_WRITER : Role::ROLE_READER
+            role:($isWriter) ? Role::ROLE_WRITER : Role::ROLE_READER,
+
         );
         try {
             $e_manager = DoctrineConnector::getEntityManager();

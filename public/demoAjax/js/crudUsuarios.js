@@ -20,6 +20,7 @@ function showUsuarios(authHeader) {
                          <tr id='${item.user.username}'>
                                <td>${item.user.username}</td>
                                <td>${item.user.email}</td>
+                               <td>${item.user.estado}</td>
                                <td>${item.user.role}</td>
                                 <td><button id="btnDelete" onclick="eliminarUser('${item.user.id}')">Delete</button></td>
                                 <td><button id="btnEdit" onclick="editarUser('${item.user.id}',)">Edit</button></td>       

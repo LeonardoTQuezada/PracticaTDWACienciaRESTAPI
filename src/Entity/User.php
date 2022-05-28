@@ -9,6 +9,7 @@
 
 namespace TDW\ACiencia\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
 use UnexpectedValueException;
@@ -80,30 +81,119 @@ class User implements JsonSerializable
     protected Role $role;
 
     /**
+     * @ORM\Column(
+     *     name="birthdate",
+     *     type="datetime",
+     *     nullable=true
+     *     )
+     */
+    protected DateTime | null $birthDate = null;
+
+    /**
+     * @ORM\Column(
+     *     name="image_url",
+     *     type="string",
+     *     length=2047,
+     *     nullable=true
+     *     )
+     */
+    protected string  | null $url = null;
+
+    /**
+     * @ORM\Column(
+     *     name     = "estado",
+     *     type     = "boolean",
+     *     nullable = false
+     *     )
+     */
+    protected bool $estado;
+
+
+    /**
      * User constructor.
      *
      * @param string $username username
      * @param string $email email
      * @param string $password password
+     * @param DateTime|null $birthDate
+     * @param string|null  $url
      * @param string $role Role::ROLE_READER | Role::ROLE_WRITER
+     * @param bool $estado estado
      *
-     * @throws UnexpectedValueException
      */
     public function __construct(
-        string $username = '',
-        string $email = '',
-        string $password = '',
-        string $role = Role::ROLE_READER
+        bool    $estado =false,
+        string   $username = '',
+        string   $email = '',
+        string   $password = '',
+
+        ?DateTime $birthDate = null,
+        ?string   $url =  null,
+        string   $role = Role::ROLE_READER,
+
+
     ) {
         $this->id       = 0;
         $this->username = $username;
         $this->email    = $email;
         $this->setPassword($password);
+        $this->birthDate = $birthDate;
+        $this->url = $url;
         try {
             $this->setRole($role);
         } catch (UnexpectedValueException) {
             throw new UnexpectedValueException('Unexpected Role');
         }
+        $this->setEstado($estado)     ;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    final public function getBirthDate(): ?DateTime
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * @param DateTime|null $birthDate
+     * @return void
+     */
+    final public function setBirthDate(?DateTime $birthDate): void
+    {
+        $this->birthDate = $birthDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl(?string $url): void
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getEstado(): bool
+    {
+        return $this->estado;
+    }
+
+    /**
+     * @param boolean $estado
+     */
+    public function setEstado(bool $estado): void
+    {
+        $this->estado = $estado;
     }
 
     /**
@@ -225,14 +315,16 @@ class User implements JsonSerializable
      */
     public function __toString(): string
     {
+        $birthdate = $this->getBirthDate()?->format('Y-m-d') ?? 'null';
         return
             sprintf(
-                '[%s: (id=%04d, username="%s", email="%s", role="%s")]',
+                '[%s: (id=%04d, username="%s", email="%s", birthDate="%s", role="%s",estado="%s")]',
                 basename(self::class),
                 $this->getId(),
                 $this->getUsername(),
                 $this->getEmail(),
-                $this->role
+                $this->role,
+                $this->getEstado()
             );
     }
 
@@ -248,10 +340,14 @@ class User implements JsonSerializable
         return [
             'user' => [
                 'id' => $this->getId(),
+                'estado'=>$this->getEstado(),
                 'username' => $this->getUsername(),
                 'email' => $this->getEmail(),
                 'pwd' => $this->getPassword(),
+                'birthDate' => $this->getBirthDate()?->format('Y-m-d') ?? null,
+                'url'  => $this->getUrl() ?? null,
                 'role' => $this->role->__toString(),
+
             ]
         ];
     }

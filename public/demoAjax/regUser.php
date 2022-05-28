@@ -21,9 +21,11 @@ try {
     $name = $_POST['name' ];
     $email=$_POST['email' ];
     $pwd=$_POST['password'];
-
+    $estado=false;
+    $birthDate=null;
+    $url=null;
     $entityManager = DoctrineConnector::getEntityManager();
-    $user = new User($name, $email , $pwd, $role);
+    $user = new User($estado,$name, $email , $pwd,$birthDate,$url, $role);
 
     $entityManager->persist($user);
     $entityManager->flush();

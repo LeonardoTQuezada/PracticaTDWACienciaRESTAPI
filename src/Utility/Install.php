@@ -52,7 +52,8 @@ abstract class Install
             !isset(
                 $_ENV['ADMIN_USER_NAME'],
                 $_ENV['ADMIN_USER_EMAIL'],
-                $_ENV['ADMIN_USER_PASSWD']
+                $_ENV['ADMIN_USER_PASSWD'],
+
             )
         ) {
             fwrite(STDERR, 'Faltan variables de entorno por definir' . PHP_EOL);
@@ -64,9 +65,11 @@ abstract class Install
         $event->getIO()->write('>> Database UPDATED');
 
         return (bool) Utils::loadUserData(
+
             $_ENV['ADMIN_USER_NAME'],
             $_ENV['ADMIN_USER_EMAIL'],
             $_ENV['ADMIN_USER_PASSWD'],
+            true,
             true
         );
     }
