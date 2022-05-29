@@ -89,7 +89,7 @@ class Utils
      * @param string $email user email
      * @param string $password user password
      * @param bool $isWriter isAdmin
-     * @param bool $estado isAdmin
+     * @param string $estado isAdmin
      *
      * @return int user_id
      */
@@ -97,15 +97,15 @@ class Utils
         string $username,
         string $email,
         string $password,
+        string $estado,
         bool $isWriter = false,
-        bool $estado = true
     ): int {
         $user = new User(
-            $estado,
             $username,
             $email,
             $password,
             role:($isWriter) ? Role::ROLE_WRITER : Role::ROLE_READER,
+            estado: $estado
 
         );
         try {

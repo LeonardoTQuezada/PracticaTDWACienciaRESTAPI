@@ -1,31 +1,8 @@
 let authHeader = null;
 $(document).ready(function (){
+
     showData()
 })
-
-window.addEventListener("onload",function(){
-
-    /*
-        $.post(
-            "/access_token",
-            $("#form-login").serialize(),
-            null
-        ).success(function (data, textStatus, request) {
-            print(data)
-            // => show scopes, users, products, ...
-            authHeader = request.getResponseHeader('Authorization');
-            console.log(authHeader)
-            showData();
-
-
-        }).fail(function (xhr) {
-            let message="";
-            if (xhr.responseJSON && xhr.responseJSON.message) {
-                message = xhr.responseJSON.message;
-            }
-            alert("Incorrecto :( \n" + message)
-        });*/
-    })
 
 
 function showData() {

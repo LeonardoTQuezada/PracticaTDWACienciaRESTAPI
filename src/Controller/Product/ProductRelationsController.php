@@ -103,7 +103,7 @@ final class ProductRelationsController extends ElementRelationsBaseController
         ];
         return $this->getElements($response, $args, $elementData);
     }
- 
+
     /**
      * PUT /products/{productId}/persons/add/{stuffId}
      * PUT /products/{productId}/persons/rem/{stuffId}

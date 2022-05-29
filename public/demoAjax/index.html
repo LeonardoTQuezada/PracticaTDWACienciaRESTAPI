@@ -47,16 +47,8 @@
 
                 authHeader = request.getResponseHeader('Authorization');
                 sessionStorage.setItem('Authorization',authHeader);
-                let roles =showTokenRol(authHeader)
-                if(roles[1]=='writer'){
-                    $(window).attr('location','PagWriter.html')
-                }
-                else{
-                    $(window).attr('location','pagReader.html')
-                }
 
-
-
+                estadoCuenta(authHeader);
              }).fail(function (xhr) {
                 let message="";
                 if (xhr.responseJSON && xhr.responseJSON.message) {
@@ -65,10 +57,41 @@
                 alert("Incorrecto :( \n" + message)
             });
     });
-    function showTokenRol(authHeader) {
+    function showToken(authHeader) {
         let token = authHeader.split(' ')[1];   // Elimina 'Bearer '
         let myData = JSON.parse(atob(token.split('.')[1]));
-        return  myData.scopes;
+        return  myData;
+    }
+    function estadoCuenta(authHeader){
+        let id= showToken(authHeader).uid
+        $.ajax({
+            type: "get",
+            url: '/api/v1/users/'+id,
+            headers: {"Authorization": authHeader},
+            dataType: 'json',
+            success: function (data)  {
+                let estado= data.user.estado;
+                 if(estado==='activa'){
+                     if(data.user.role==='writer'){
+                         $(window).attr('location','PagWriter.html')
+                     }
+                     else{
+                         $(window).attr('location','pagReader.html')
+                     }
+
+                 }
+                 else {
+                     alert('Su cuenta '+data.user.username+' esta desactivada')
+                 }
+            },
+            error: function (xhr) {
+                let message = "";
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    message = xhr.responseJSON.message;
+                }
+                alert("Error:( \n" + message)
+            }
+        })
     }
 
     $("#btn-signin").click(function(){

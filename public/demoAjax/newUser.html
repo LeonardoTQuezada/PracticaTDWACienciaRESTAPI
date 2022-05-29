@@ -66,6 +66,7 @@
                         alert("Usuario creado correctamente");
                         $(window).attr('location','manejarUsuarios.html')},
                     error: function (xhr) {
+
                         let message = "";
                         if (xhr.responseJSON && xhr.responseJSON.message) {
                             message = xhr.responseJSON.message;

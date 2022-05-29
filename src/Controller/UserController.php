@@ -20,6 +20,7 @@ use TDW\ACiencia\Entity\Role;
 use TDW\ACiencia\Entity\User;
 use TDW\ACiencia\Utility\Error;
 use Throwable;
+use function MongoDB\BSON\toJSON;
 
 /**
  * Class UserController
@@ -235,7 +236,7 @@ class UserController
      */
     public function put(Request $request, Response $response, array $args): Response
     {
-        if ( !$this->checkReaderScope($request)) { // 403 => 404 por seguridad
+        if (!$this-> checkReaderScope($request)) { // 403 => 404 por seguridad
             return Error::error($response, StatusCode::STATUS_NOT_FOUND);
         }
 
@@ -286,6 +287,13 @@ class UserController
             }
         }
 
+        // estado
+        if (isset($req_data['estado'])) {
+
+                $user->setEstado($req_data['estado']);
+
+        }
+
         $this->entityManager->flush();
 
         return $response
@@ -323,7 +331,6 @@ class UserController
      */
     protected function checkReaderScope(Request $request): bool
     {
-
         $scopes = $request->getAttribute('token')->claims()->get('scopes', null);
         return in_array(Role::ROLE_READER, $scopes, true);
     }

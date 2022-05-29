@@ -9,7 +9,7 @@ info:
   version: 1.3.0
   contact:
     name: Máster Universitario en Ingeniería Web
-    url: 'http://miw.etsisi.upm.es/'
+    url: 'https://miw.etsisi.upm.es/'
     email: miw.etsisi@upm.es
 
 servers:
@@ -204,7 +204,7 @@ paths:
         - $ref: '#/components/parameters/ifMatchParam'
       security:
         - MiWApiSecurity: [ reader ]
-        - MiWApiSecurity: [ writer ]
+
       requestBody:
         $ref: '#/components/requestBodies/UserRequestBody'
       responses:
@@ -1100,31 +1100,31 @@ components:
             - writer
         estado:
           description: estado de la cuenta del user
-          type: boolean
-          default: false
-        #        _links:
-        #          description: link relations
-        #          type: object
-        #          properties:
-        #            parent:
-        #              type: object
-        #              properties:
-        #                href:
-        #                  type: string
-        #                  format: url
-        #            self:
-        #              type: object
-        #              properties:
-        #                href:
-        #                  type: string
-        #                  format: url
+          type: string
+          default: desactivado
+          #        _links:
+          #          description: link relations
+          #          type: object
+          #          properties:
+          #            parent:
+          #              type: object
+          #              properties:
+          #                href:
+          #                  type: string
+          #                  format: url
+          #            self:
+          #              type: object
+          #              properties:
+          #                href:
+          #                  type: string
+          #                  format: url
       example:
                 user:
                   id: 1508
                   username: user1508
                   email: miw.etsisi@upm.es
                   role: reader
-                  estado: false
+                  estado: desactivada
         #          _links:
         #            parent:
         #              href: /api/v1/users
@@ -1138,7 +1138,7 @@ components:
                     username: user1508
                     email: miw.etsisi@upm.es
                     role: reader
-                    estado: false
+                    estado: desactivada
         #            _links:
         #              parent:
         #                href: /api/v1/users
@@ -1191,8 +1191,8 @@ components:
           name: Product07
           birthDate: '2020-01-01'
           deathDate: '2250-12-25'
-          imageUrl: 'http://image07.example.com/'
-          wikiUrl: 'http://wiki07.example.com/'
+          imageUrl: 'https://image07.example.com/'
+          wikiUrl: 'https://wiki07.example.com/'
           persons: [ 3, 17 ]
           entities: [ 2 ]
     Person:
@@ -1216,8 +1216,8 @@ components:
           name: Person17
           birthDate: '2017-07-17'
           deathDate: '2701-01-07'
-          imageUrl: 'http://image17.example.com/'
-          wikiUrl: 'http://wiki17.example.com/'
+          imageUrl: 'https://image17.example.com/'
+          wikiUrl: 'https://wiki17.example.com/'
           products: [ 1, 7 ]
           entities: [ 2 ]
     Entity:
@@ -1351,8 +1351,8 @@ components:
                   - writer
               estado:
                 description: Estado de la cuenta
-                type: boolean
-                default: false
+                type: string
+                default: desactivada
             example:
               username: username
               email: User_email@example.com
@@ -1381,6 +1381,10 @@ components:
                 enum:
                   - reader
                   - reader+writer
+              estado:
+                description: estado de la cuenta
+                type: string
+
         application/json:
           schema:
             type: object
@@ -1401,8 +1405,8 @@ components:
                   - reader+writer
               estado:
                 description: User estado
-                type: boolean
-                default: false
+                type: string
+                default: desactivada
     ElementRequestBody:
       description: '`Element` data'
       content:

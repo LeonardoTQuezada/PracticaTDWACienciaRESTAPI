@@ -14,7 +14,7 @@ use TDW\ACiencia\Middleware\JwtMiddleware;
 
 /**
  * ############################################################
- * routes /api/v1/persons
+ * routes /api/v1/products
  * ############################################################
  * @param App $app
  */

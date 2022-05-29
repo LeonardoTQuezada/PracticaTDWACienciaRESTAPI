@@ -74,13 +74,6 @@ class User implements JsonSerializable
     protected string $password_hash;
 
     /**
-     * @ORM\Embedded(
-     *     class="TDW\ACiencia\Entity\Role"
-     * )
-     */
-    protected Role $role;
-
-    /**
      * @ORM\Column(
      *     name="birthdate",
      *     type="datetime",
@@ -91,7 +84,7 @@ class User implements JsonSerializable
 
     /**
      * @ORM\Column(
-     *     name="image_url",
+     *     name="url",
      *     type="string",
      *     length=2047,
      *     nullable=true
@@ -100,13 +93,21 @@ class User implements JsonSerializable
     protected string  | null $url = null;
 
     /**
+     * @ORM\Embedded(
+     *     class="TDW\ACiencia\Entity\Role"
+     * )
+     */
+    protected Role $role;
+
+    /**
      * @ORM\Column(
      *     name     = "estado",
-     *     type     = "boolean",
+     *      type     = "string",
+     *     length   = 32,
      *     nullable = false
      *     )
      */
-    protected bool $estado;
+    protected string $estado;
 
 
     /**
@@ -115,21 +116,17 @@ class User implements JsonSerializable
      * @param string $username username
      * @param string $email email
      * @param string $password password
-     * @param DateTime|null $birthDate
-     * @param string|null  $url
      * @param string $role Role::ROLE_READER | Role::ROLE_WRITER
      * @param bool $estado estado
      *
      */
     public function __construct(
-        bool    $estado =false,
+
         string   $username = '',
         string   $email = '',
         string   $password = '',
-
-        ?DateTime $birthDate = null,
-        ?string   $url =  null,
         string   $role = Role::ROLE_READER,
+        string    $estado ='desactivada',
 
 
     ) {
@@ -137,8 +134,7 @@ class User implements JsonSerializable
         $this->username = $username;
         $this->email    = $email;
         $this->setPassword($password);
-        $this->birthDate = $birthDate;
-        $this->url = $url;
+
         try {
             $this->setRole($role);
         } catch (UnexpectedValueException) {
@@ -165,7 +161,7 @@ class User implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getUrl(): ?string
     {
@@ -173,7 +169,7 @@ class User implements JsonSerializable
     }
 
     /**
-     * @param string $url
+     * @param string|null $url
      */
     public function setUrl(?string $url): void
     {
@@ -181,20 +177,22 @@ class User implements JsonSerializable
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function getEstado(): bool
+    public function getEstado(): string
     {
         return $this->estado;
     }
 
     /**
-     * @param boolean $estado
+     * @param string $estado
      */
-    public function setEstado(bool $estado): void
+    public function setEstado(string $estado): void
     {
         $this->estado = $estado;
     }
+
+
 
     /**
      * @return int
@@ -340,13 +338,13 @@ class User implements JsonSerializable
         return [
             'user' => [
                 'id' => $this->getId(),
-                'estado'=>$this->getEstado(),
                 'username' => $this->getUsername(),
                 'email' => $this->getEmail(),
                 'pwd' => $this->getPassword(),
                 'birthDate' => $this->getBirthDate()?->format('Y-m-d') ?? null,
                 'url'  => $this->getUrl() ?? null,
                 'role' => $this->role->__toString(),
+                'estado'=>$this->getEstado(),
 
             ]
         ];
