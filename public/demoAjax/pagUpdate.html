@@ -6,7 +6,6 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta content="no-cache" http-equiv="cache-control">
     <title>Práctica Uno de HTML y CSS</title>
 
     <link href="css/hoja-de-estilos.css" rel="stylesheet" type="text/css"/>
@@ -44,28 +43,43 @@
     </div>
 
     <hr/>
-    <div class="positionLeft">
+    <div class="positionLeft" id="contProductos">
+        <label style="color:gold">PRODUCTOS</label><br>
+        <ol id="listaPro">
+
+        </ol>
         <select id="sProducto"  >
 
-        </select><br>
-        <button id='btnRProd' >Agregar Producto</button>
+        </select><br><br>
+        <button id='btnRProd' >Agregar Relación</button><br><br>
+        <button id='btnERProd' >Eliminar Relación</button>
 
     </div>
 
-    <div class="positionCenter">
+    <div class="positionCenter" id="contPersonas">
+        <label style="color:gold">PERSONAS</label><br>
+        <ol id="listaPer">
+
+        </ol>
         <select id="sPersona"  >
 
-        </select><br>
+        </select><br><br>
 
-        <button id='btnRP' >Agregar Persona</button>
+        <button id='btnRP' >Agregar Relación</button><br><br>
+        <button id='btnERP' >Eliminar Relación</button>
     </div>
 
-    <div class="positionRight">
+    <div class="positionRight"  id="contEntidades">
+        <label style="color:gold">ENTIDADES</label><br>
+        <ol id="listaEnt">
+
+        </ol>
         <select id="sEntidad"  >
 
-        </select><br>
+        </select><br><br>
 
-        <button id='btnRE' >Agregar Entidad</button>
+        <button id='btnRE' >Agregar Relación</button><br><br>
+        <button id='btnREE' >Eliminar Relación</button>
     </div>
 </main>
 

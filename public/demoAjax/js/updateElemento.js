@@ -3,7 +3,7 @@ $(document).ready(function (){
     let authHeader= sessionStorage.getItem('Authorization');
     let id= sessionStorage.getItem('idElemento');
     let tipo= sessionStorage.getItem('tipoE');
-    relacionPrEnt(id,authHeader)
+    cargaRelaciones(tipo,id);
     let ruta=dimeRutaApi(tipo)+'/'+id;
     $.ajax({
         type: "get",
@@ -63,25 +63,7 @@ $(document).ready(function (){
     })
 
 })
-function relacionPrEnt(id,authHeader) {
 
-    $.ajax({
-        type: "GET",
-        url: 'api/v1/persons/'+id+'/entities',
-        headers: {"Authorization": authHeader},
-        success: function (data) {
-            console.log(data)
-
-
-        },
-        complete: function(xhr){
-            console.log(xhr)
-
-        },
-
-    })
-
-}
 
 
 
@@ -129,4 +111,126 @@ function updateElemento(){
             }
         })
     }
+}
+//cargar lista de relacion de elementos
+function cargaRelaciones(tipo,id) {
+    switch (tipo) {
+        case 'Product':
+            cargarlistaProdEnt(id);
+            cargarlistaProdPers(id);
+            break;
+        case 'Entity':
+            cargarlistaEntPers(id);
+            cargarlistaEntProd(id);
+            break;
+        case 'Person':
+            cargarlistaPersProd(id);
+            cargarlistaPersEnt(id)
+            break;
+
+    }
+}
+
+//Relacion producto con entidad
+function cargarlistaProdEnt(id) {
+    $.ajax({
+        type: "GET",
+        url: '/api/v1/products/'+id+'/entities',
+        success: function (data) {
+            let contenedor= document.querySelector('#listaEnt');
+            contenedor.innerHTML = '';
+            $.each(data.entities, function(i, item) {
+                contenedor.innerHTML += `
+                    <li style="color: white">${item.entity.name}</li>`
+
+            });
+
+        }
+    })
+}
+//Relacion producto con  persona
+function cargarlistaProdPers(id) {
+    $.ajax({
+        type: "GET",
+        url: '/api/v1/products/'+id+'/persons',
+        success: function (data) {
+            let contenedor= document.querySelector('#listaPer');
+            contenedor.innerHTML = '';
+            $.each(data.persons, function(i, item) {
+                contenedor.innerHTML += `
+                    <li style="color: white">${item.person.name}</li>`
+
+            });
+
+        }
+    })
+}
+//Relacion entidad con producto
+function cargarlistaEntProd(id) {
+    $.ajax({
+        type: "GET",
+        url: '/api/v1/entities/'+id+'/products',
+        success: function (data) {
+            let contenedor= document.querySelector('#listaPro');
+            contenedor.innerHTML = '';
+            $.each(data.products, function(i, item) {
+                contenedor.innerHTML += `
+                    <li style="color: white">${item.product.name}</li>`
+
+            });
+
+        }
+    })
+}
+
+//Relacion entidad con persona
+function cargarlistaEntPers(id) {
+    $.ajax({
+        type: "GET",
+        url: '/api/v1/entities/'+id+'/persons',
+        success: function (data) {
+            let contenedor= document.querySelector('#listaPer');
+            contenedor.innerHTML = '';
+            $.each(data.persons, function(i, item) {
+                contenedor.innerHTML += `
+                    <li style="color: white">${item.person.name}</li>`
+
+            });
+
+        }
+    })
+}
+//Relacion persona con producto
+function cargarlistaPersProd(id) {
+    $.ajax({
+        type: "GET",
+        url: '/api/v1/persons/'+id+'/products',
+        success: function (data) {
+            let contenedor= document.querySelector('#listaPro');
+            contenedor.innerHTML = '';
+            $.each(data.products, function(i, item) {
+                contenedor.innerHTML += `
+                    <li style="color: white">${item.product.name}</li>`
+
+            });
+
+        }
+    })
+}
+//Relaciion persona con entidad
+function cargarlistaPersEnt(id) {
+    $.ajax({
+        type: "GET",
+        url: '/api/v1/persons/'+id+'/entities',
+        success: function (data) {
+            let contenedor= document.querySelector('#listaEnt');
+            contenedor.innerHTML = '';
+            $.each(data.entities, function(i, item) {
+                contenedor.innerHTML += `
+                    <li style="color: white">${item.entity.name}</li>`
+
+            });
+
+        }
+    })
 }

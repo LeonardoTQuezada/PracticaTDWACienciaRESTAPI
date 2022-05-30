@@ -38,7 +38,7 @@ function showEntity() {
         // dataType: 'json',
         success: function (data) {
             $.each(data.entities, function(i, valor) {
-                let contenedor= document.querySelector('${item.entity.name}');
+                let contenedor= document.querySelector('${valor.entity.name}');
                 contenedor.innerHTML = '';
                 contenedor.innerHTML += `
                        <td ><button id="btnDelete"  onclick="eliminar('${valor.id}','${tipo}')">Delete</button></td>
@@ -57,7 +57,7 @@ function showPerson() {
 
 
             $.each(data.persons, function(i,valor) {
-                let contenedor= document.querySelector('${item.person.name}');
+                let contenedor= document.querySelector('${valor.person.name}');
                 contenedor.innerHTML = '';
                 contenedor.innerHTML += `
                     <td ><button id="btnDelete"  onclick="eliminar('${valor.id}','${tipo}')">Delete</button></td>
