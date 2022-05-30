@@ -1241,8 +1241,8 @@ components:
           name: Entity02
           birthDate: '1936-07-18'
           deathDate: '1939-04-01'
-          imageUrl: 'http://image02.example.com/'
-          wikiUrl: 'http://wiki02.example.com/'
+          imageUrl: 'https://image02.example.com/'
+          wikiUrl: 'https://wiki02.example.com/'
           products: [ 1, 7 ]
           persons: [ 3, 17 ]
     Message:

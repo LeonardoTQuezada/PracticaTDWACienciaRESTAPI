@@ -19,9 +19,8 @@ function showProducts() {
         success: function (data) {
 
 
-            $.each(data.products, function(i, item) {
-                console.log(item.product.name)
-                let contenedor= document.querySelector(''+item.product.name);
+            $.each(data.products, function(i, valor) {
+                let contenedor= document.querySelector(''+valor.product.name);
 
                 contenedor.innerHTML += `
                         <td ><button id="btnDelete"  onclick="eliminar('${valor.id}','${tipo}')">Delete</button></td>
@@ -38,7 +37,7 @@ function showEntity() {
         url: '/api/v1/entities',
         // dataType: 'json',
         success: function (data) {
-            $.each(data.entities, function(i, item) {
+            $.each(data.entities, function(i, valor) {
                 let contenedor= document.querySelector('${item.entity.name}');
                 contenedor.innerHTML = '';
                 contenedor.innerHTML += `
@@ -57,7 +56,7 @@ function showPerson() {
         success: function (data) {
 
 
-            $.each(data.persons, function(i, item) {
+            $.each(data.persons, function(i,valor) {
                 let contenedor= document.querySelector('${item.person.name}');
                 contenedor.innerHTML = '';
                 contenedor.innerHTML += `

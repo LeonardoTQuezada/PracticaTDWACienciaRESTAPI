@@ -74,8 +74,3 @@ function dimeRutaApi(tip){
     }
     return rutaApi
 }
-function showTokenRol(authHeader) {
-    let token = authHeader.split(' ')[1];   // Elimina 'Bearer '
-    let myData = JSON.parse(atob(token.split('.')[1]));
-    return  myData.scopes;
-}

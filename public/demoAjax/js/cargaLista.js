@@ -58,7 +58,7 @@ function showEntity(authHeader) {
             let contenedor= document.querySelector('#tableEntity');
             contenedor.innerHTML = '';
             $.each(data.entities, function(i, item) {
-                if(roles[1]=='writer') {
+                if(roles[1]==='writer') {
                     contenedor.innerHTML += `
                     <tr id='${item.entity.name}'>
                         <td><img src=${item.entity.imageUrl} class="dimensionImg"> ${item.entity.name}</td>
@@ -89,7 +89,7 @@ function showPerson(authHeader) {
             let contenedor= document.querySelector('#tablePersons');
             contenedor.innerHTML = '';
             $.each(data.persons, function(i, item) {
-                if(roles[1]=='writer') {
+                if(roles[1]==='writer') {
                     contenedor.innerHTML += `
                     <tr id='${item.person.name}'>
                         <td><img src=${item.person.imageUrl} class="dimensionImg"> ${item.person.name}</td>

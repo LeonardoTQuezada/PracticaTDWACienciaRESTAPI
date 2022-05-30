@@ -9,6 +9,7 @@
 
 namespace TDW\ACiencia\Controller;
 
+use DateTime;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
@@ -293,6 +294,20 @@ class UserController
                 $user->setEstado($req_data['estado']);
 
         }
+
+        // url
+        if (isset($req_data['url'])) {
+
+            $user->setUrl($req_data['url']);
+
+        }
+        // birthDate
+        if (isset($req_data['birthDate'])) {
+
+            ($date = DateTime::createFromFormat('!Y-m-d', $req_data['birthDate'])) ? $user->setBirthDate($date) : null;
+
+        }
+
 
         $this->entityManager->flush();
 

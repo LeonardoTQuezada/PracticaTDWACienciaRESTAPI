@@ -58,5 +58,6 @@ class PersonController extends ElementBaseController
     public function getPersonname(Request $request, Response $response, array $args): Response
     {
         // @TODO
+        return $this->getElementByName($response, $args['personname']);
     }
 }

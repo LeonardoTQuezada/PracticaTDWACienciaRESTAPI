@@ -25,11 +25,15 @@ $(document).ready(function (){
             <label for="username" style="color: white;">Usuario: </label>
             <input type="text" id="username" name="username"  value="`+usuario.username+`"  required/>
             <label for="pwd" style="color: white;">PWD: </label>
-            <input  type="password" id="pwd" name="password"  value="" />
+            <input  type="password" id="pwd" name="password"  value="" /><br><br>
             <label for="email" style="color: white;">Email: </label>
             <input type="email" id="useremail" name="email"  value="`+usuario.email+`"  />
+            <label for="birthDate" style="color: white;">BirthDate: </label>
+            <input type="date" id="birthDate" name="birthDate"  value="`+usuario.birthDate+`"  />
+            <label for="url" style="color: white;">My Url: </label>
+            <input type="text" id="url" name="url"  value="`+usuario.url+`"  />
             <label for="rol" style="color: white;">Rol: </label>
-            <input id='rol' type = "text" name ="role"    value="`+usuario.role+`" disabled >
+            <input id='rol' type = "text" name ="role"    value="`+usuario.role+`" disabled ><br><br>
             <input type="button" id="btn-upUser" value="Actualizar cuenta"/>
             <hr/>    `
             document.querySelector('#btn-upUser').addEventListener('click',updateUser);
@@ -56,18 +60,17 @@ function updateUser(){
     let authHeader= sessionStorage.getItem('Authorization');
 
     let nombre = $("#username").val();
-    let email = $("#email").val();
+    let email = $("#useremail").val();
     let pwd = $("#pwd").val();
-    let dat='username='+nombre+'&password='+pwd+'&email='+email
+    let birthDate=$("#birthDate").val();
+    let url=$("#url").val();
+    let dat='username='+nombre+'&password='+pwd+'&email='+email+'&birthDate='+birthDate+'&url='+url
     if(pwd=="") {
-       dat='username='+nombre+'&email='+email
+       dat='username='+nombre+'&email='+email+'&birthDate='+birthDate+'&url='+url
     }
 
-
-    console.log(pwd)
     let id= showToken(authHeader).uid;
     let confirma= confirm("Estas seguro de Modificar");
-
     if(confirma){
         $.ajax({
             type: "put",
@@ -79,7 +82,6 @@ function updateUser(){
                 window.location.href=window.location.href;
             },
             error: function (xhr) {
-                console.log(xhr.getAllResponseHeaders())
                 let message = "";
                 if (xhr.responseJSON && xhr.responseJSON.message) {
                     message = xhr.responseJSON.message;

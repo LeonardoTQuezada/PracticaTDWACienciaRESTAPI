@@ -3,6 +3,7 @@ $(document).ready(function (){
     let authHeader= sessionStorage.getItem('Authorization');
     let id= sessionStorage.getItem('idElemento');
     let tipo= sessionStorage.getItem('tipoE');
+    relacionPrEnt(id,authHeader)
     let ruta=dimeRutaApi(tipo)+'/'+id;
     $.ajax({
         type: "get",
@@ -62,6 +63,27 @@ $(document).ready(function (){
     })
 
 })
+function relacionPrEnt(id,authHeader) {
+
+    $.ajax({
+        type: "GET",
+        url: 'api/v1/persons/'+id+'/entities',
+        headers: {"Authorization": authHeader},
+        success: function (data) {
+            console.log(data)
+
+
+        },
+        complete: function(xhr){
+            console.log(xhr)
+
+        },
+
+    })
+
+}
+
+
 
 
 function dimeRutaApi(tip){

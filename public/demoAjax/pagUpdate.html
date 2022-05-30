@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta content="no-cache" http-equiv="cache-control">
     <title>Práctica Uno de HTML y CSS</title>
 
     <link href="css/hoja-de-estilos.css" rel="stylesheet" type="text/css"/>
@@ -42,9 +42,35 @@
         </form>
 
     </div>
+
+    <hr/>
+    <div class="positionLeft">
+        <select id="sProducto"  >
+
+        </select><br>
+        <button id='btnRProd' >Agregar Producto</button>
+
+    </div>
+
+    <div class="positionCenter">
+        <select id="sPersona"  >
+
+        </select><br>
+
+        <button id='btnRP' >Agregar Persona</button>
+    </div>
+
+    <div class="positionRight">
+        <select id="sEntidad"  >
+
+        </select><br>
+
+        <button id='btnRE' >Agregar Entidad</button>
+    </div>
 </main>
 
 <script src="js/updateElemento.js"></script>
+<script src="js/crudRelacionElementos.js"></script>
 
 </body>
 
